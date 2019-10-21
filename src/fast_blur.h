@@ -17,7 +17,7 @@ void std_to_box (float boxes[], float sigma, int n)
     for(int i=0; i<n; i++) 
         boxes[i] = i < m ? wl : wu;
 
-    for(int i=0; i<n; i++) 
+    for(int i=0; i<n; i++)
         boxes[i] = (boxes[i] - 1) * 0.5f;
 }
 
@@ -53,7 +53,9 @@ void total_blur (Color * in, Color * out, int w, int h, float r)
 void box_blur (Color * in, Color * out, int w, int h, float r) 
 {
     horizontal_blur (in, out, w, h, r);
-    total_blur (out, in, w, h, r);
+    std::swap(in, out);
+    total_blur (in, out, w, h, r);
+    std::swap(in, out);
 }
 
 void fast_gaussian_blur (Color * in, Color * out, int w, int h, float sigma) 
@@ -61,19 +63,21 @@ void fast_gaussian_blur (Color * in, Color * out, int w, int h, float sigma)
     // sigma conversion to box dimensions
     float boxes[3];
     std_to_box(boxes, sigma, 3);
-    box_blur (in, out, w, h, boxes[0]);
-    box_blur (in, out, w, h, boxes[1]);
-    box_blur (in, out, w, h, boxes[2]);
+    for(int i = 0; i < 3; ++i)
+        box_blur (in, out, w, h, boxes[i]);
+    std::swap(in, out);
 }
 
 Image blur(const Image& source, float sigma)
 {
-    Image tmp = source, target(source.width(), source.height());
-    fast_gaussian_blur(tmp.buffer(), target.buffer(), source.width(), source.height(), sigma);
-    #pragma omp for
-    for(int i = 0; i < (int)target.size(); ++i)
-        target(i) = clamp(target(i));
-    return target;
+    Image in = source, out(source.width(), source.height());
+    fast_gaussian_blur(in.buffer(), out.buffer(), source.width(), source.height(), sigma);
+
+    #pragma omp parallel for
+    for(int i = 0; i < (int)out.size(); ++i)
+        out(i) = clamp(out(i));
+
+    return out;
 }
 
 #endif

@@ -10,6 +10,7 @@
 #include "image_io.h"
 #include "fast_blur.h"
 #include "quantizer.h"
+#include "kmeans.h"
 
 //
 // Basile Fraboni 2019
@@ -25,9 +26,17 @@ int main( int argc, char * argv[] )
 {
     Image im = read_image(argv[1]);
     write_image(im, "image.png");
+    
     Image im_blur = blur(im, std::atof(argv[2]));
     write_image(im_blur, "blur.png");
+    
     Image im_quant = color_quant(im_blur, std::atoi(argv[3]));
     write_image(im_quant, "quant.png");
+
+    KMeans<Color> kmeans(im_blur.m_data, std::atoi(argv[3]));
+    Image im_quant_kmeans(im.width(), im.height(), Black());
+    kmeans.replace(im_quant_kmeans.buffer());
+    write_image(im_quant_kmeans, "quant_kmeans.png");
+
     return 0;
 }

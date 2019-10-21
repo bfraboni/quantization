@@ -20,7 +20,7 @@
 //! representation d'une image.
 class Image
 {
-protected:
+public:
     std::vector<Color> m_data;
     int m_width;
     int m_height;
