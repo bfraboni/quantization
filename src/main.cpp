@@ -18,25 +18,28 @@
 // This code aim to reproduce the image quantization from DavidC answer on this thread :
 // https://codegolf.stackexchange.com/questions/42217/paint-by-numbers
 //
-// I need to find or rewrite another quantization algorithm, better and faster than the one from Rosetta Code.
-//
 // Usage gaussian <image> <blur radius> <number of color>
 
 int main( int argc, char * argv[] )
 {
     Image im = read_image(argv[1]);
-    write_image(im, "image.png");
+    // write_image(im, "image.png");
     
-    Image im_blur = blur(im, std::atof(argv[2]));
-    write_image(im_blur, "blur.png");
-    
-    Image im_quant = color_quant(im_blur, std::atoi(argv[3]));
-    write_image(im_quant, "quant.png");
+    float radius = std::atof(argv[2]);
+    Image im_blur = blur(im, radius);
+    // write_image(im_blur, "blur.png");
+    // Image im_quant = color_quant(im_blur, std::atoi(argv[3]));
+    // write_image(im_quant, "quant.png");
 
-    KMeans<Color> kmeans(im_blur.m_data, std::atoi(argv[3]));
+    int k = std::atoi(argv[3]);
+    KMeans<Color> kmeans(im_blur.m_data, k);
     Image im_quant_kmeans(im.width(), im.height(), Black());
     kmeans.replace(im_quant_kmeans.buffer());
-    write_image(im_quant_kmeans, "quant_kmeans.png");
+
+    std::stringstream ss;
+    ss << "radius" << int(radius) << "colors" << k << ".png";
+    // write_image(im_quant_kmeans, "quant_kmeans.png");
+    write_image(im_quant_kmeans, ss.str().c_str());
 
     return 0;
 }
