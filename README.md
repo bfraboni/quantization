@@ -8,7 +8,7 @@ The answer provided by DavidC is a Mathematica code that perform a Gaussian blur
 
 Here is the result:
 
-|Radius\Colors|2|5|10|25|50|100|200|
+|R\K|2|5|10|25|50|100|200|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |0|![](data/demo/radius0colors2.png)|![](data/demo/radius0colors5.png)|![](data/demo/radius0colors10.png)|![](data/demo/radius0colors25.png)|![](data/demo/radius0colors50.png)|![](data/demo/radius0colors100.png)|![](data/demo/radius0colors200.png)|
 |1|![](data/demo/radius1colors2.png)|![](data/demo/radius1colors5.png)|![](data/demo/radius1colors10.png)|![](data/demo/radius1colors25.png)|![](data/demo/radius1colors50.png)|![](data/demo/radius1colors100.png)|![](data/demo/radius1colors200.png)|
