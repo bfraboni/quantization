@@ -7,10 +7,6 @@ This works followed closely the work I have done on [image voronoization](https:
 The answer provided by DavidC is a Mathematica code that perform a Gaussian blur step then an image quantization. Pretty simple and giving nice results ! I decided to port the exact same routine to C++, using my implementation of the fast gaussian blur approximation by IvanK (see details [here](http://blog.ivank.net/fastest-gaussian-blur.html) and my code [here](https://gist.github.com/bfraboni/946d9456b15cac3170514307cf032a27)) and a classic K-Means pass for image quantization.
 
 Here is the result:
-
-[Original image](data/smooth/001.jpg =128x)
-
-Gaussian filtered + quatization results:
 |R\K|4|16|64|256|
 |:-:|:-:|:-:|:-:|:-:|
 |0|![](data/demo2/radius0colors4.png)|![](data/demo2/radius0colors16.png)|![](data/demo2/radius0colors64.png)|![](data/demo2/radius0colors256.png)|
