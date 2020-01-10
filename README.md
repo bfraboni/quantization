@@ -8,15 +8,14 @@ The answer provided by DavidC is a Mathematica code that perform a Gaussian blur
 
 Here is the result:
 
-![Original image](data/smooth/001.jpg =128x)
+[Original image](data/smooth/001.jpg =128x)
 
+Gaussian filtered + quatization results:
 |R\K|4|16|64|256|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|:-:|:-:|:-:|:-:|:-:|
 |0|![](data/demo2/radius0colors4.png)|![](data/demo2/radius0colors16.png)|![](data/demo2/radius0colors64.png)|![](data/demo2/radius0colors256.png)|
 |1|![](data/demo2/radius1colors4.png)|![](data/demo2/radius1colors16.png)|![](data/demo2/radius1colors64.png)|![](data/demo2/radius1colors256.png)|
 |2|![](data/demo2/radius2colors4.png)|![](data/demo2/radius2colors16.png)|![](data/demo2/radius2colors64.png)|![](data/demo2/radius2colors256.png)|
 |4|![](data/demo2/radius4colors4.png)|![](data/demo2/radius4colors16.png)|![](data/demo2/radius4colors64.png)|![](data/demo2/radius4colors256.png)|
 |8|![](data/demo2/radius8colors4.png)|![](data/demo2/radius8colors16.png)|![](data/demo2/radius8colors64.png)|![](data/demo2/radius8colors256.png)|
 |16|![](data/demo2/radius16colors4.png)|![](data/demo2/radius16colors16.png)|![](data/demo2/radius16colors64.png)|![](data/demo2/radius16colors256.png)|
-
-
