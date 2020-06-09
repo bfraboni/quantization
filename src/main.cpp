@@ -9,7 +9,6 @@
 
 #include "image_io.h"
 #include "fast_blur.h"
-#include "quantizer.h"
 #include "kmeans.h"
 
 //
@@ -28,8 +27,6 @@ int main( int argc, char * argv[] )
     float radius = std::atof(argv[2]);
     Image im_blur = blur(im, radius);
     // write_image(im_blur, "blur.png");
-    // Image im_quant = color_quant(im_blur, std::atoi(argv[3]));
-    // write_image(im_quant, "quant.png");
 
     int k = std::atoi(argv[3]);
     KMeans<Color> kmeans(im_blur.m_data, k);
