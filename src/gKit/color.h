@@ -29,6 +29,8 @@ struct Color
     float operator() ( const unsigned int i ) const { return (&r)[i]; }
     float& operator() ( const unsigned int i ) { return (&r)[i]; }
     
+    float luminance( ) const { return 0.212671f * r + 0.715160f * g + 0.072169f * b; }
+    
     float r, g, b, a;
 
     Color& operator+= ( const Color& c ) { r += c.r; g += c.g; b += c.b; a += c.a; return *this; }

@@ -24,6 +24,16 @@ int main( int argc, char * argv[] )
     Image im = read_image(argv[1]);
     // write_image(im, "image.png");
     
+    bool bw = argc > 4 ? (bool)std::atoi(argv[4]) : false;
+    if( bw )
+    {
+        for(int i = 0; i < im.width(); ++i)
+        for(int j = 0; j < im.height(); ++j)
+        {
+            im(i,j) = Color(im(i,j).luminance());
+        }
+    }
+
     float radius = std::atof(argv[2]);
     Image im_blur = blur(im, radius);
     // write_image(im_blur, "blur.png");
@@ -39,4 +49,5 @@ int main( int argc, char * argv[] )
     write_image(im_quant_kmeans, ss.str().c_str());
 
     return 0;
+
 }

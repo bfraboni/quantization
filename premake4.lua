@@ -38,4 +38,3 @@ project("gaussian")
 	targetdir "bin"
 	includedirs { "src/", "extern/" }
 	files { "src/gKit/*", "src/main.cpp" }
-

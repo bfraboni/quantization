@@ -69,7 +69,7 @@ public:
             }
             error /= k;
 
-            if( error < 1e-3 ) break;
+            if( error < 1e-4 ) break;
         }
         printf("iterations %d\n", i);
     }
